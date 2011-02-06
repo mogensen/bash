@@ -1,0 +1,9 @@
+[user]
+     name = Frederik Mogensen
+     email = sodiaf@gmail.com
+
+[alias]
+        co = checkout
+		st = status
+		ci = commit
+
