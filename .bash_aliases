@@ -1,6 +1,6 @@
 
 alias cd..='cd ..'
-alias clr..='clear'
+alias clr='clear'
 
 # some more ls aliases
 alias ll='ls -lah'
