@@ -1,9 +1,14 @@
 [user]
-     name = Frederik Mogensen
-     email = sodiaf@gmail.com
+	name = Frederik Mogensen
+	email = sodiaf@gmail.com
 
 [alias]
-        co = checkout
-		st = status
-		ci = commit
+	co = checkout
+	st = status
+	ci = commit
 
+[color]
+	diff = auto
+
+[core]
+	editor = vim
