@@ -9,6 +9,7 @@
 
 [color]
 	diff = auto
+	status = true
 
 [core]
 	editor = vim
