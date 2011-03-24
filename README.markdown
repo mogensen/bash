@@ -4,16 +4,16 @@ Any file which matches the shell glob `_*` will be linked into `$HOME` as a syml
 
 For example:
 
-_bashrc
+	_bashrc
 
 becomes
 
-${HOME}/.bashrc
+	${HOME}/.bashrc
 
 ### Installing source files
 It's as simple as running:
 
-./install.sh
+	./install.sh
 
 From this top-level directory.
 
