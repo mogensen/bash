@@ -1,11 +1,11 @@
 #!/bin/bash
 
 function printStat {
-    if [ $? == 0 ]; then
+	if [ $? == 0 ]; then
 		echo "[${GREEN}   OK   ${ATTR_RESET}]" $1
-    else
+	else
 		echo "[${RED} FAILED ${ATTR_RESET}]" $1
-    fi
+	fi
 }
 
 for i in _*
