@@ -13,5 +13,11 @@
 [core]
 	editor = vim
 	excludesfile = ~/bash/.gitignore
+
 [diff]
 	tool = vimdiff
+
+[color "status"]
+	added = yellow
+	changed = green
+	untracked = cyan
