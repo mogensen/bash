@@ -6,6 +6,7 @@
 	co = checkout
 	st = status
 	ci = commit
+	dt = difftool
 
 [color]
 	diff = auto
