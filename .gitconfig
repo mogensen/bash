@@ -12,3 +12,6 @@
 
 [core]
 	editor = vim
+	excludesfile = ~/bash/.gitignore
+[diff]
+	tool = vimdiff
