@@ -19,3 +19,6 @@ From this top-level directory.
 
 ## Requirements
 * bash
+
+## Thanks
+Thank to github.com/sontek for publishing the initial install.sh on github
