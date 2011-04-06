@@ -1,0 +1,57 @@
+#!/bin/bash
+
+RED=$(tput setaf 1)
+GREEN=$(tput setaf 2)
+
+ATTR_RESET=$(tput sgr0)
+
+# ok_failed(cmd, description)
+ok_failed() {
+    local cmd=$1
+    local description=$2
+
+    eval $cmd > /dev/null 2>&1
+
+    if [ $? == 0 ]; then
+	echo "[${GREEN}   OK   ${ATTR_RESET}]" $description
+    else
+	echo "[${RED} FAILED ${ATTR_RESET}]" $description
+    fi
+}
+
+# check_installed(prg_name, cmd_name=prg_name)
+check_installed() {
+    local prg_name=${1}
+    local cmd_name=${2:-$1}
+
+    ok_failed "which $cmd_name" $prg_name
+}
+
+header() {
+	echo
+	echo "###" $1 "###"
+}
+
+header "Editors"
+check_installed vim
+
+header "Window managers"
+check_installed screen
+check_installed byobu
+
+header "text-processing"
+check_installed awk
+check_installed sed
+
+header "Version Control System"
+check_installed git
+check_installed svn
+
+header "Scripting environments"
+check_installed python
+check_installed perl
+
+header "Data transferring tools"
+check_installed wget
+check_installed curl
+check_installed lynx
