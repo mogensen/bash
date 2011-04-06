@@ -6,3 +6,6 @@ alias clr='clear'
 alias ll='ls -lah'
 alias la='ls -A'
 alias l='ls -lha'
+
+# Just for fun
+alias busy=' cat /dev/urandom | hexdump -C | grep "ca fe"'
