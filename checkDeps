@@ -55,3 +55,6 @@ header "Data transferring tools"
 check_installed wget
 check_installed curl
 check_installed lynx
+
+header "Misc"
+check_installed colordiff
