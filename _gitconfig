@@ -7,7 +7,7 @@
 	st = status
 	ci = commit
 	dt = difftool
-	lg = log --graph --pretty=oneline --abbrev-commit
+	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
 
 [color]
 	diff = auto
