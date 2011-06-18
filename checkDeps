@@ -58,3 +58,4 @@ check_installed lynx
 
 header "Misc"
 check_installed colordiff
+check_installed source-highlight
