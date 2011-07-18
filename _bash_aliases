@@ -1,4 +1,8 @@
 
+# Getting lazy
+alias g=git
+alias v=mvim
+
 alias cd..='cd ..'
 alias clr='clear'
 
