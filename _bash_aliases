@@ -7,9 +7,9 @@ alias cd..='cd ..'
 alias clr='clear'
 
 # some more ls aliases
-alias ll='ls -lah'
-alias la='ls -A'
-alias l='ls -lha'
+alias ll='ls -lahG'
+alias la='ls -AG'
+alias l='ls -lhaG'
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
