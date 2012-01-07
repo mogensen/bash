@@ -26,6 +26,28 @@ fi
 # Just for fun
 alias busy=' cat /dev/urandom | hexdump -C | grep "ca fe"'
 
-# allows for a git diff like svn diff
-function svndiff () { svn diff $@ | colordiff | less -SR; }
-function lesscode () { source-highlight -i $@ -o STDOUT -f esc | less -SR; }
+function lesscode () {
+	source-highlight -i $@ -o STDOUT -f esc | less -SR;
+}
+
+function search-file () {
+	find . -iname \*$1\*
+}
+
+function gmail () {
+	USER=`keychain -u -s google`
+	PASS=`keychain -p -s google`
+	curl -u $USER:$PASS --silent "https://mail.google.com/mail/feed/atom/inbox/" | \
+	tr -d '\n' | awk -F '<entry>' '{for (i=2; i<=NF; i++) {print $i}}' |  \
+	xml unesc | \
+	perl -pe 's/^<title>(.*)<\/title>.*<issued>(.{10}).*<\/issued>.*<name>(.*)<\/name>.*$/\033[1;31m$3 ###$2###\033[1;33m$1/' | \
+	gawk '{ printf "%-30s (%s) : %s\n",$1,$2,$3}' FS="###"
+}
+
+function clear_screen() {
+	# /usr/bin/open -a Terminal
+	/usr/bin/osascript -e 'tell application "System Events" to tell process "Terminal" to keystroke "k" using command down'
+	return 0
+}
+
+source ~/.bash_svn
