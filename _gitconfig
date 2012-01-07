@@ -8,6 +8,7 @@
 	ci = commit
 	dt = difftool
 	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+	listtag = tag -n
 
 [color]
 	diff = auto
