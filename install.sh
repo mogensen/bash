@@ -17,6 +17,10 @@ for i in _*
 do 
 	source="${PWD}/$i"
 	target="${HOME}/${i/_/.}"
-	ln -sf ${source} ${target}
-	printStat "ln -sf ${source} ${target}"
+	if [ -f $target ]; then
+	    echo "${target} already exists" 
+	else
+	    ln -sf ${source} ${target}
+	    printStat "ln -sf ${source} ${target}"
+	fi
 done
