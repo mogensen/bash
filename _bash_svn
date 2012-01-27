@@ -1,0 +1,77 @@
+# allows for a git diff like svn diff - Not used anymore. I have cofigured svn
+# to use vim as standard diff tool
+## function svndiff () {
+## 	svn diff $@ | colordiff | less -SR;
+## }
+
+function svn-log () {
+	svn-color log -v $1
+}
+function svn-st () {
+	svn-color status
+}
+function svn-status () {
+	svn-st
+}
+function svn-history () {
+	cvshistory
+}
+
+function s() {
+	local SVN="svn"
+	local RED=$(tput setaf 1)
+	local GREEN=$(tput setaf 2)
+
+	local ATTR_RESET=$(tput sgr0)
+
+	local operation=$1
+	shift
+	
+	case "${operation}" in
+		"status"|"stat"|"st")
+			svn-st
+		;;
+		"log"|"l")
+			svn-log "$@"
+		;;
+		"diff"|"di")
+			# The colordiff utility (http://colordiff.sourceforge.net) is
+			# needed for this enhancement to work
+			# Thanks to Lukas Kahwe Smith for the addition to
+			# leave out whitespace changes
+			# Thanks to Robin Speekenbrink for the hint to the -R
+			# switch of less, which should fix problems some of
+			# you might have with colorization.
+			${SVN} ${operation} "$@" --diff-cmd `which diff` -x "-u -w"|colordiff|less -R
+		;;
+		"update"|"up")
+			# This snippet is taken from a blog post found on the net. My
+			# thanks go out to the author of it.
+			# http://woss.name/2007/02/01/display-svn-changelog-on-svn-up/
+			# I have slightly modified it to better suit my needs.
+			
+			local old_revision=`${SVN} info "$@" | awk '/^Revision:/ {print $2}'`
+			local first_update=$((${old_revision} + 1))
+			
+			${SVN} ${operation} "$@"
+		    
+			local new_revision=`${SVN} info "$@" | awk '/^Revision:/ {print $2}'`
+
+			if [ ${new_revision} -gt ${old_revision} ]; then
+				svn log -v -rHEAD:${first_update} "$@"
+			else
+				echo "No changes."
+			fi
+		;;
+		"log")
+			${SVN} ${operation} "$@"|sed -e 's/^-\+$/[1;32m\0[m/' -e 's/^r[0-9]\+.\+$/${RED}\0[m/'
+		;;
+		"blame"|"praise"|"annotate"|"ann")
+			${SVN} ${operation} "$@"|sed -e 's/^\(\s*[0-9]\+\s*\)\([^ ]\+\s*\)\(.*\)$/[1;32m\1[m${RED}\2[m\3/'
+		;;
+		*)
+			${SVN} ${operation} "$@"
+		;;
+	esac
+}
+
