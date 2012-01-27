@@ -29,3 +29,5 @@ alias busy=' cat /dev/urandom | hexdump -C | grep "ca fe"'
 # allows for a git diff like svn diff
 function svndiff () { svn diff $@ | colordiff | less -SR; }
 function lesscode () { source-highlight -i $@ -o STDOUT -f esc | less -SR; }
+
+alias whatsmyip='curl http://automation.whatismyip.com/n09230945.asp ; echo'
