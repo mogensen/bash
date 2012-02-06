@@ -26,6 +26,8 @@ fi
 # Just for fun
 alias busy=' cat /dev/urandom | hexdump -C | grep "ca fe"'
 
+alias whatsmyip='curl http://automation.whatismyip.com/n09230945.asp ; echo'
+
 function lesscode () {
 	source-highlight -i $@ -o STDOUT -f esc | less -SR;
 }
