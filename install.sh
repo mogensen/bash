@@ -18,9 +18,9 @@ do
 	source="${PWD}/$i"
 	target="${HOME}/${i/_/.}"
 	if [ -f $target ]; then
-	    echo "${target} already exists" 
+	    echo "[${RED} FAILED ${ATTR_RESET}] ${target} already exists"
 	else
-	    ln -sf ${source} ${target}
-	    printStat "ln -sf ${source} ${target}"
+	    ln -s ${source} ${target}
+	    printStat "ln -s ${source} ${target}"
 	fi
 done
