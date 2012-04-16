@@ -1,0 +1,97 @@
+brew install colordiff growlnotify macvim source-highlight byobu git lynx pkg-config wget growlnotify imagemagick gnuplot
+brew linkapps
+
+# Enable full keyboard access for all controls (e.g. enable Tab in modal dialogs)
+defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
+
+# Enable snap-to-grid for desktop icons
+/usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist
+
+# Enable tap to click (Trackpad)
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
+
+# Disable New Window Animation in Mac OS X Lion
+defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool NO
+
+# Enable Verbose Mode on boot
+sudo nvram boot-args="-v"
+
+# Disable disk image verification
+defaults write com.apple.frameworks.diskimages skip-verify -bool true
+defaults write com.apple.frameworks.diskimages skip-verify-locked -bool true
+defaults write com.apple.frameworks.diskimages skip-verify-remote -bool true
+
+############ Finder
+
+# Display full POSIX path as Finder window title
+defaults write com.apple.finder _FXShowPosixPathInTitle -bool true
+
+# Show indicator lights for open applications in the Dock
+defaults write com.apple.dock show-process-indicators -bool true
+
+# Expand save panel by default
+defaults write NSNavPanelExpandedStateForSaveMode -bool true
+
+# Expand print panel by default
+defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
+
+# Disable the warning before emptying the Trash
+defaults write com.apple.finder WarnOnEmptyTrash -bool false
+
+# Disable the warning when changing a file extension
+defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
+
+# Show all filename extensions in Finder
+defaults write NSGlobalDomain AppleShowAllExtensions -bool true
+
+# Show status bar in Finder
+defaults write com.apple.finder ShowStatusBar -bool true
+
+# Set desktop finder icon size
+defaults write com.apple.finder DesktopViewOptions.IconSize 10 
+
+# Show the ~/Library folder
+chflags nohidden ~/Library
+
+############ iTunes
+
+# Enable half starts in iTunes
+defaults write com.apple.iTunes allow-half-stars -bool TRUE
+
+# Enable iTunes track notifications in the Dock
+defaults write com.apple.dock itunes-notifications -bool true
+
+# Disable backups of iPhone/iPod Touch in iTunes during sync
+defaults write com.apple.iTunes DeviceBackupsDisabled true
+
+# Arrows link to library instead of store 
+defaults write com.apple.iTunes invertStoreLinks true
+
+# Disable the Ping sidebar in iTunes
+defaults write com.apple.iTunes disablePingSidebar -bool true
+
+# Disable all the other Ping stuff in iTunes
+defaults write com.apple.iTunes disablePing -bool true
+
+# Make ⌘ + F focus the search input in iTunes
+defaults write com.apple.iTunes NSUserKeyEquivalents -dict-add "Target Search Field" "@F"
+
+############ Safari
+
+# Make Safari’s search banners default to Contains instead of Starts With
+defaults write com.apple.Safari FindOnPageMatchesWordStartsOnly -bool false
+
+# Enable Safari’s debug menu
+defaults write com.apple.Safari IncludeDebugMenu -bool true
+
+# Remove useless icons from Safari’s bookmarks bar
+defaults write com.apple.Safari ProxiesInBookmarksBar "()"
+
+# Enable Safari web inspector
+defaults write com.apple.Safari WebKitDeveloperExtras -bool true 
+
+# Show status bar in Safari
+defaults write com.apple.Safari ShowStatusBar true
+
+# Kill affected applications
+for app in Safari Finder Dock Mail SystemUIServer; do killall "$app" >/dev/null 2>&1; done
