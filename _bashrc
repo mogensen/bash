@@ -86,4 +86,7 @@ if [ -f ~/.bashrc_local ]; then
     . ~/.bashrc_local
 fi
 
+# Passing aliases so that they work as sudo
+alias sudo='sudo '
+
 export EDITOR=vim VISUAL=vim
