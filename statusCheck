@@ -1,0 +1,16 @@
+#!/bin/bash
+
+RED=$(tput setaf 1)
+GREEN=$(tput setaf 2)
+
+ATTR_RESET=$(tput sgr0)
+
+description=$@
+
+$@
+
+if [ $? == 0 ]; then
+	echo "[${GREEN}   OK   ${ATTR_RESET}]" $description
+else
+	echo "[${RED} FAILED ${ATTR_RESET}]" $description
+fi
