@@ -1,4 +1,3 @@
-
 # Getting lazy
 alias g=git
 alias v=mvim
@@ -46,7 +45,10 @@ function clear_screen() {
 	return 0
 }
 
-source ~/.bash_svn
+## Svn aliases
+if [ -f ~/.bash_svn ]; then
+    . ~/.bash_svn
+fi
 
 function extract {
 	echo Extracting $1 ...
